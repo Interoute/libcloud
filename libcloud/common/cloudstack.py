@@ -29,6 +29,7 @@ from libcloud.common.base import JsonResponse
 from libcloud.common.types import MalformedResponseError
 from libcloud.compute.types import InvalidCredsError
 
+import os
 
 class CloudStackResponse(JsonResponse):
     def parse_error(self):
@@ -74,6 +75,7 @@ class CloudStackConnection(ConnectionUserAndKey, PollingConnection):
         return data
 
     def _make_signature(self, params):
+        params['region'] = os.getenv('CLOUDSTACK_VDC_REGION', 'Europe')
         signature = [(k.lower(), v) for k, v in list(params.items())]
         signature.sort(key=lambda x: x[0])
 
