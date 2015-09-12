@@ -28,21 +28,23 @@ Set the following environment variable before running libcloud commands in Pytho
 
 Valid values are 'Europe', 'USA', or 'Asia', and the case is not significant. Default value is 'Europe' if no environment variable is set. 
 
-As a quick test, the following program will output the VDC zones, which should be those located in the specified region::
+As a quick test, the following program will output the VDC zones, which should be those located in the specified region
 
-from libcloud.compute.types import Provider
-from libcloud.compute.providers import get_driver
-import libcloud.security
-# For secure http, set to server without certificate
-libcloud.security.VERIFY_SSL_CERT = True
-Driver = get_driver(Provider.CLOUDSTACK)
-api_secret = "INSERT VDC API SECRET KEY"
-api_key = "INSERT VDC API KEY"
-vdchost =  "INSERT VDC API SERVER ADDRESS"
-vdcpath = "INSERT PATH TO THE API ENDPOINT"
-conn=Driver(key=api_key, secret=api_secret, host=vdchost, path=vdcpath)
-# As a test, print the list of VDC zones for the specified region
-print conn.list_locations()
+::
+
+  from libcloud.compute.types import Provider
+  from libcloud.compute.providers import get_driver
+  import libcloud.security
+  # For secure http, set to server without certificate
+  libcloud.security.VERIFY_SSL_CERT = True
+  Driver = get_driver(Provider.CLOUDSTACK)
+  api_secret = "INSERT VDC API SECRET KEY"
+  api_key = "INSERT VDC API KEY"
+  vdchost =  "INSERT VDC API SERVER ADDRESS"
+  vdcpath = "INSERT PATH TO THE API ENDPOINT"
+  conn=Driver(key=api_key, secret=api_secret, host=vdchost, path=vdcpath)
+  # As a test, print the list of VDC zones for the specified region
+  print conn.list_locations()
 
 
 
